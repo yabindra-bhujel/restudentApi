@@ -7,7 +7,11 @@ from rest_framework.decorators import api_view
 def menuList(request):
     menu = Menu.objects.all()
     serializer = MenuSerializer(menu, many=True)
-    return Response(serializer.data)
+    data = serializer.data
+    for item in data:
+        item['image_url'] = request.build_absolute_uri(item['image'])
+        del item['image']
+    return Response(data)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def menu_detail(request, id):
@@ -127,6 +131,6 @@ def TableReversedlist(request):
     
 @api_view(['GET'])
 def userWiseTable(request, id):
-        table = TableReversed.objects.filter(user_id=id)
+        table = TableReversed.objects.filter(user=id)
         serializer = TableReversedSerializer(table, many=True)
         return Response(serializer.data)

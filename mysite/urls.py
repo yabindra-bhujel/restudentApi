@@ -1,4 +1,6 @@
-
+from django.conf.urls.static import static
+from mysite import settings
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
@@ -6,7 +8,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 from account.views import UserViewset, MyTokenObtainPairView
 
-from menu.views import menuList, createMenu, menu_detail, blogList, commentList, createBlog, blog_detail, createComment, TableReversedlist
+from menu.views import *
 
 urlpatterns = [
     #  admin site url
@@ -39,9 +41,14 @@ urlpatterns = [
     # table Reversed url
     
     path('api/table/', TableReversedlist),
+    path('api/table/<int:id>/', userWiseTable),
+    
 ]
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewset, basename='users')
 
 urlpatterns += router.urls
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
