@@ -128,16 +128,23 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd5qmf6kqnfqekg',
+        'USER': 'cjespueqdskbbu',
+        'PASSWORD': 'e81b72dcdb23e94fb4caac47dab38500dd7d09ea8d6efffebe4b50f42a7cfc68',
+        'HOST': 'ec2-34-197-91-131.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
-MEDIA_URL = 'https://dajngoapi.herokuapp.com/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
 
 
 # Password validation
