@@ -1,5 +1,5 @@
-from .serializers import BlogSerialzier, CommentSerializer, MenuSerializer
-from.models import Menu, Blog, Comment
+from .serializers import BlogSerialzier, CommentSerializer, MenuSerializer, TableReversedSerializer
+from.models import Menu, Blog, Comment, TableReversed
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -116,3 +116,17 @@ def comment_detail(request, id):
         comment = Comment.objects.get(id = id )
         comment.delete()
         return Response('Comment succsesfully delete!')
+    
+
+
+@api_view(['GET'])
+def TableReversedlist(request):
+        table = TableReversed.objects.all()
+        serializer = TableReversedSerializer(table, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET'])
+def userWiseTable(request, id):
+        table = TableReversed.objects.filter(user_id=id)
+        serializer = TableReversedSerializer(table, many=True)
+        return Response(serializer.data)

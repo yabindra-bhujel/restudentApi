@@ -34,3 +34,21 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+
+
+class TableReversed(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    date = models.DateField()
+    time = models.TimeField()
+    people = models.IntegerField()
+    message = models.TextField(null=True, blank=True)
+    
+    
+    
+    def __str__(self):
+        return self.user.username

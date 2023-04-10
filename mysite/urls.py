@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 from account.views import UserViewset, MyTokenObtainPairView
 
-from menu.views import menuList, createMenu, menu_detail, blogList, commentList, createBlog, blog_detail, createComment
+from menu.views import menuList, createMenu, menu_detail, blogList, commentList, createBlog, blog_detail, createComment, TableReversedlist
 
 urlpatterns = [
     #  admin site url
@@ -35,6 +35,10 @@ urlpatterns = [
     path('api/comment/create/', createComment),
     
     
+    
+    # table Reversed url
+    
+    path('api/table/', TableReversedlist),
 ]
 
 router = routers.DefaultRouter()
