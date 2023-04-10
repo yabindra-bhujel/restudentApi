@@ -43,12 +43,11 @@ urlpatterns = [
     path('api/table/', TableReversedlist),
     path('api/table/<int:id>/', userWiseTable),
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewset, basename='users')
 
 urlpatterns += router.urls
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+
+
